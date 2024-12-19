@@ -1,0 +1,29 @@
+@using StoreApp.Models
+@model ProductListViewModel
+
+
+<div class="row">
+    <div class="col-md-3">
+        @await Component.InvokeAsync("CategoriesMenu")
+        @await Component.InvokeAsync("ProductFilterMenu")
+        <div products="" number="3"></div>
+    </div>
+    <div class="col-md-9">
+        <div class="row my-3">
+            @foreach (Product product in Model.Products)
+            {
+
+                <partial name="_ProductCard" model="@product" />
+
+            }
+        </div>
+        <div page-model="@Model?.Pagination" 
+        class="btn-group"
+        page-classes-enabled="true"
+        page-class="btn"
+        page-class-normal="btn-outline-dark"
+        page-class-selected="btn-primary"
+        page-action="Index"></div>
+    </div>
+</div>
+
